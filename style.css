@@ -91,3 +91,6 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline-color:#b9a
 .design-picker button.selected{background:#e9dfd2;border-color:#b29b83}
 @media(min-width:761px){aside{background:#faf6efdb;border-color:#ded3c5}.profile{border-color:#e6dcd0}}
 @media(max-width:760px){#editor{background:#faf6efdb;border-color:#ded3c5}}
+
+.pet-name-label{display:block;font-size:8px;color:#958575;margin:6px 0 10px}.pet-name-label input{display:block;width:100%;max-width:170px;background:#fffaf4;border:1px solid #ded1c1;border-radius:5px;padding:6px 8px;margin-top:4px;font-size:10px;color:#655648}.pet-name-label input::placeholder{color:#ae9e8d}
+@media(max-width:760px){.profile{height:auto;min-height:95px;padding:8px 0}.pet-name-label input{max-width:200px}}

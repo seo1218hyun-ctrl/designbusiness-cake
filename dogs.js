@@ -52,14 +52,14 @@ async function updateDog(){
   portrait.setAttribute('href',url);
   window.dogFaceURL=url; window.dogBaseImage=dogCache.get(name);
   const avatar=document.createElement('img');avatar.src=url;avatar.alt=state.breed+' 얼굴';document.querySelector('#avatar').replaceChildren(avatar);
-  const wasVisible=group.getAttribute('visibility')==='visible';group.setAttribute('visibility',state.cream?'visible':'hidden');
-  if(state.cream)animate(group,wasVisible?'replace':'add');
+  const wasVisible=group.getAttribute('visibility')==='visible';group.setAttribute('visibility',state.cream&&state.decoration?'visible':'hidden');
+  if(state.cream&&state.decoration)animate(group,wasVisible?'replace':'add');
   refreshDogGeometry();
  }catch(error){document.querySelector('#design-note').textContent='얼굴 이미지를 불러오지 못했어요. 새로고침해주세요.';console.error(error);}
 }
 document.querySelector('#breed').addEventListener('change',updateDog);
 for(const id of ['fur','fur-first','fur-second'])document.getElementById(id).addEventListener('change',updateDog);
-document.querySelector('#creams').addEventListener('click',updateDog);
+document.querySelector('#decorations').addEventListener('click',updateDog);
 document.querySelector('#sheets').addEventListener('click',updateDog);
 document.querySelector('#exclusions').addEventListener('click',updateDog);
 document.querySelector('#replay').addEventListener('click',replayDesign);
@@ -69,16 +69,16 @@ function silhouette(color){
 }
 function imageLayer(parent,url,y){const image=document.createElementNS('http://www.w3.org/2000/svg','image');for(const [k,v] of Object.entries({href:url,x:180,y,width:340,height:170,preserveAspectRatio:'none'}))image.setAttribute(k,v);parent.append(image);}
 function refreshDogGeometry(){
- const valid=!!window.dogFaceURL,shape=state.design==='shape'&&valid;
+ const valid=!!window.dogFaceURL,decorated=!!(state.cream&&state.decoration),shape=state.design==='shape'&&valid;
  document.querySelector('#sheet-layer').setAttribute('visibility',state.sheet&&!shape?'visible':'hidden');
  document.querySelector('#cream-layer').setAttribute('visibility',state.cream&&!shape?'visible':'hidden');
- document.querySelector('#dog-design').setAttribute('visibility',state.cream&&!shape&&valid?'visible':'hidden');
+ document.querySelector('#dog-design').setAttribute('visibility',decorated&&!shape&&valid?'visible':'hidden');
  document.querySelector('#shaped-cake').setAttribute('visibility',shape&&state.sheet?'visible':'hidden');
  const base=document.querySelector('#shaped-sheet'),cream=document.querySelector('#shaped-cream');base.replaceChildren();cream.replaceChildren();cream.setAttribute('visibility','visible');
  if(shape&&state.sheet){const side=silhouette(state.sheet==='rice'?'#c8b18a':'#bc905f'),top=silhouette(ingredients[state.sheet].top);for(let y=245;y>=185;y-=2)imageLayer(base,side,y);imageLayer(base,top,185);
- if(state.cream){const icing=silhouette(ingredients[state.cream].top);for(let y=185;y>=170;y-=2)imageLayer(cream,icing,y);imageLayer(cream,window.dogFaceURL,169);}}
- document.querySelector('#design-note').textContent=!valid?'이 견종은 얼굴 이미지 준비 중이에요.':!state.cream?'크림을 고르면 얼굴 디자인이 완성돼요.':state.breed+' · '+(shape?'얼굴 모양 케이크':'윗면에 얼굴 그리기')+' · '+furLabel();
- document.querySelector('#cake').setAttribute('aria-label',state.cream?(shape?'얼굴 윤곽의 케이크':'원형 케이크 윗면의 강아지 얼굴'):'케이크를 만드는 중');
+ if(state.cream){const icing=silhouette(ingredients[state.cream].top);for(let y=185;y>=170;y-=2)imageLayer(cream,icing,y);if(decorated)imageLayer(cream,window.dogFaceURL,169);}}
+ document.querySelector('#design-note').textContent=!valid?'이 견종은 얼굴 이미지 준비 중이에요.':!decorated?'장식 재료를 고르면 얼굴과 생크림 장식이 완성돼요.':state.breed+' · '+(shape?'얼굴 모양 케이크':'윗면에 얼굴 그리기')+' · '+furLabel();
+ document.querySelector('#cake').setAttribute('aria-label',decorated?(shape?'얼굴 윤곽의 케이크':'원형 케이크 윗면의 강아지 얼굴'):'케이크를 만드는 중');
 }
 window.refreshDogGeometry=refreshDogGeometry;
 for(const button of document.querySelectorAll('[data-design]'))button.onclick=()=>{if(state.design===button.dataset.design)return;cancelReplay();state.design=button.dataset.design;for(const b of document.querySelectorAll('[data-design]')){b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',b===button);}refreshDogGeometry();if(state.sheet)animate(document.querySelector(state.design==='shape'?'#shaped-cake':'#dog-design'),'replace');};
