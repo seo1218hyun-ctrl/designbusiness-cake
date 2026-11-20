@@ -9,3 +9,5 @@ style.previous.css
 
 .vercel/
 dist/
+.vercel
+.env*

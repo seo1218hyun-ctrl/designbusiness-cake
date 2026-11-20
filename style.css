@@ -66,3 +66,28 @@
  .primary{border-radius:7px}
 }
 @media(max-width:360px){#editor{grid-template-columns:1fr}.question,.message,.next-area{grid-column:1}}
+
+/* DB-F&B — warm, muted linen palette */
+:root{--canvas:#f0ebe4;--ink:#51483f;--muted:#968a7d;--green:#897765;--line:#ded5ca}
+body{background:var(--canvas)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline-color:#b9a58f}
+.brand{letter-spacing:-.6px}.journey b{color:#806d5c}.journey,.header-note{color:#9a8d80}
+.eyebrow,.profile-fields label,.profile-extra,.other-label{color:#958575}
+.profile-fields select{color:#655648;border-color:#d4c7b8}
+.helper,.next-area p,.options small,.input-wrap span{color:#988a7a}
+.segmented button{color:#8d7e6e;border-color:#d7cbbd;background:#f8f4ee}
+.segmented button.selected{background:#94816e;border-color:#94816e;color:#fffaf4}
+.options button{background:#faf6f0;border-color:#ddd1c3;color:#65584a}
+.options button.selected{background:#e9dfd2;border-color:#b29b83;box-shadow:none}
+.options button.selected:after{color:#8a725a}
+.options button:disabled{background:#eee7de}.size-icon{color:#ad9981}
+.primary{background:#8d7966;color:#fffaf4}.primary:hover{background:#796552}
+.chips button.selected{background:#8d7966;border-color:#8d7966}
+.scene-caption h3,.tray p,.tray button,.back,#topper-note,#design-note{color:#8c7965}
+.scene-caption>span,.scene-caption p,.prototype-note{color:#a99a88}
+.tray button{border-color:#d9ccbc}.orb{background:radial-gradient(ellipse,#dfd1c426,transparent 67%)}
+.notice{color:#8c7965;border-color:#d9cdbd}.summary-row span{color:#9b8c7d}
+.close-details{color:#8a725a}.input-wrap{border-color:#d7c9b8}
+.design-picker button.selected{background:#e9dfd2;border-color:#b29b83}
+@media(min-width:761px){aside{background:#faf6efdb;border-color:#ded3c5}.profile{border-color:#e6dcd0}}
+@media(max-width:760px){#editor{background:#faf6efdb;border-color:#ded3c5}}
