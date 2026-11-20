@@ -1,0 +1,10 @@
+.git
+.github
+.qa
+node_modules
+preview-*.png
+style.previous.css
+check*.cjs
+prepare-dogs.cjs
+server.cjs
+.env*

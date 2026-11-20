@@ -6,3 +6,6 @@ style.previous.css
 .env.*
 !.env.example
 *.log
+
+.vercel/
+dist/
