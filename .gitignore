@@ -1,0 +1,8 @@
+.qa/
+node_modules/
+preview-*.png
+style.previous.css
+.env
+.env.*
+!.env.example
+*.log
